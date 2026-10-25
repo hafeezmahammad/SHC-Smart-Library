@@ -160,7 +160,7 @@ const VIEWS = {
         const heldCopy = DB.copies.find(c => c.hold === r.id);
  
         const status = badge(r.status) +
-          (r.status === 'Waiting' ? ' #' + position(r) : '') +
+          (r.status === 'Waiting' ? ' #' + (r.pos ?? position(r)) : '') +
           (r.exp && r.status === 'Ready' ? `<br><span class="note">until ${fd(r.exp)}</span>` : '');
  
         const fulfil = !own && r.status === 'Ready' && heldCopy
@@ -190,7 +190,7 @@ const VIEWS = {
       .filter(c => c.st !== 'issued')
       .map(c => {
         const r = c.st === 'held' ? DB.res.find(x => x.id === c.hold) : null;
-        return `<option value="${c.id}">${esc(c.id)} &middot; ${esc(book(c.book).title)}${r ? ' (held for ' + esc(r.sid) + ')' : ''}</option>`;
+        return `<option value="${c.id}">${esc(c.code)} &middot; ${esc(book(c.book).title)}${r ? ' (held for ' + esc(r.sid) + ')' : ''}</option>`;
       }).join('');
  
     const students = DB.students.filter(s => s.active)

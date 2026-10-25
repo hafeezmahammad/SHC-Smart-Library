@@ -46,9 +46,7 @@ function loginView() {
     <input id="lpw" type="password" placeholder="Password" autocomplete="current-password"
            onkeydown="if(event.key==='Enter')login()">
     <button class="btn" onclick="login()">Log in</button>
-    <p class="note">Prototype demo accounts (dev only):<br>
-      DEMO001 / student123 &middot; LIB001 / lib12345 &middot; ADM001 / admin123.<br>
-      Data is stored in this browser only.</p>
+    <p class="note">Log in with your college ID and the password given by the library.</p>
   </div></div>`;
 }
 
@@ -62,8 +60,6 @@ function render() {
     app.innerHTML = loginView();
     return;
   }
-
-  sweep();                        // expire reservations, flag overdue loans
 
   const menu = NAV[U.role];
   if (!VIEWS[V]) V = menu[0][0];  // unknown screen -> first menu item
